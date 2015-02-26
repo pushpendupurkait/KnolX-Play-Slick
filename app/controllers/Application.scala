@@ -18,6 +18,7 @@ import play.mvc.Results.Redirect
 import scala.slick.lifted.TableQuery
 import play.mvc.Results.Redirect
 import java.util.Date
+import play.mvc.Results.Redirect
 
 object Application extends Controller {
 
@@ -34,6 +35,7 @@ object Application extends Controller {
       Ok(views.html.dashboard(Email))
     }.getOrElse {
       Ok(views.html.signInForm(signInForm))
+      //Redirect(routes.Application.signInPage()).flashing("failure" ->"No record Deleted.")
     }
   }
   
@@ -65,8 +67,12 @@ object Application extends Controller {
    * which shows location of Knoldus softwares LLP.
    */
   
-  def contact = Action{
-    Ok(views.html.contact("Contact"))
+  def contact = Action{ request =>
+    request.session.get("EmailID").map { Email =>
+      Ok(views.html.contact("Contact"))
+    }.getOrElse {
+      Ok(views.html.signInForm(signInForm))
+    }
   }
   /**
    * When user is Logged-in then Logout action helps him/her
