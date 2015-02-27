@@ -9,7 +9,7 @@
 		</div>
 		<div class="panel-body">  
 		
-		    @form(routes.Application.update(),'class -> "form form-horizontal", 'id->"form1",'method ->"post") {
+		    @form(routes.Application.update(),'class -> "form form-horizontal", 'id->"updateForm",'method ->"post") {
 			
 		    	<div class="form-group">
 		            @inputText(computerForm("Name"), '_label -> "Name",'class -> "form-control")
@@ -27,7 +27,7 @@
 		            @inputPassword(computerForm("Password"), '_label -> "Password",'class -> "form-control")
 		    	</div>
 		    	<div class="form-group">
-		            @inputText(computerForm("Phone"), '_label -> "Phone",'class -> "form-control")
+		            @inputText(computerForm("Phone"), '_label -> "Phone",'class -> "form-control",'name->"Phone")
 		    	</div>
 		    
 		    	<div class="container row">

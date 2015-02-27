@@ -1,17 +1,6 @@
 if (window.console) {
   console.log("Welcome to your Play application's JavaScript!");
 }
-$("#SignUpForm").validate({
-    rules: {
-       name: {
-          required: true
-             }
-       },
-       messages: {
-          name: "Required Field"
-       }
-   });
-
 /**
  * 
  * Map canvas starts here
@@ -32,3 +21,189 @@ function initialize() {
         title: 'Knoldus Software LLP'
     });
   }
+/**
+ * Validation for Sign In Form
+ */
+(function($,W,D)
+		{
+		    var JQUERY4U = {};
+
+		    JQUERY4U.UTIL =
+		    {
+		        setupFormValidation: function()
+		        {
+		            //form validation rules
+		            $("#signInForm").validate({
+		                rules: {
+		                    Email: {
+		                        required: true,
+		                        email: true
+		                    },
+		                    Password: {
+		                        required: true,
+		                        minlength: 5
+		                    }
+		                },
+		                messages: {
+		                    Password: {
+		                        required: "Please provide a password",
+		                        minlength: "Your password must be at least 5 characters long"
+		                    },
+		                    Email: {
+		                    	required: "Please enter an email address",
+		                    	email: "Please enter a valid email address"
+		                    }
+		                },
+		                submitHandler: function(form) {
+		                    form.submit();
+		                }
+		            });
+		        }
+		    }
+
+		    //when the dom has loaded setup form validation rules
+		    $(D).ready(function($) {
+		        JQUERY4U.UTIL.setupFormValidation();
+		    });
+
+		})(jQuery, window, document);
+/**
+ * Validation for Sign Up Form
+ */
+(function($,W,D)
+		{
+		    var JQUERY4U = {};
+
+		    JQUERY4U.UTIL =
+		    {
+		        setupFormValidation: function()
+		        {
+		            //form validation rules
+		            $("#signUpForm").validate({
+		                rules: {
+		                	Name:{
+		                		required: true,
+		                	},
+		            		Address:{
+		            			required: true,
+		            		},
+		            		Company:{
+		            			required: true,
+		            		},
+		                    Email: {
+		                        required: true,
+		                        email: true
+		                    },
+		                    Password: {
+		                        required: true,
+		                        minlength: 5
+		                    }
+		                    
+		                },
+		                messages: {
+		                	Name:{
+		                		required: "Please provide a name",
+		                	},
+		            		Address:{
+		            			required: "Please provide an address",
+		            		},
+		            		Company:{
+		            			required: "Please provide a company",
+		            		},
+		                    Password: {
+		                        required: "Please provide a password",
+		                        minlength: "Your password must be at least 5 characters long"
+		                    },
+		                    Email: {
+		                    	required: "Please enter an email address",
+		                    	email: "Please enter a valid email address"
+		                    }
+		                },
+		                submitHandler: function(form) {
+		                    form.submit();
+		                }
+		            });
+		        }
+		    }
+
+		    //when the dom has loaded setup form validation rules
+		    $(D).ready(function($) {
+		        JQUERY4U.UTIL.setupFormValidation();
+		    });
+
+		})(jQuery, window, document);
+
+/**
+ * 
+ */
+
+(function($,W,D)
+		{
+		    var JQUERY4U = {};
+
+		    JQUERY4U.UTIL =
+		    {
+		        setupFormValidation: function()
+		        {
+		            //form validation rules
+		            $("#updateForm").validate({
+		                rules: {
+		                	Name:{
+		                		required: true,
+		                	},
+		            		Address:{
+		            			required: true,
+		            		},
+		            		Company:{
+		            			required: true,
+		            		},
+		                    Email: {
+		                        required: true,
+		                        email: true
+		                    },
+		                    Password: {
+		                        required: true,
+		                        minlength: 5
+		                    },
+		                    Phone:{
+		                    	required: true
+		                    }
+		                    
+		                },
+		                messages: {
+		                	Name:{
+		                		required: "Please provide a name",
+		                	},
+		            		Address:{
+		            			required: "Please provide an address",
+		            		},
+		            		Company:{
+		            			required: "Please provide a company",
+		            		},
+		                    Password: {
+		                        required: "Please provide a password",
+		                        minlength: "Your password must be at least 5 characters long"
+		                    },
+		                    Email: {
+		                    	required: "Please enter an email address",
+		                    	email: "Please enter a valid email address"
+		                    },
+		                    Phone:{
+		                    	required: "Please enter a phone number."
+		                    	
+		                    }
+		                     
+		                },
+		                submitHandler: function(form) {
+		                    form.submit();
+		                }
+		            });
+		        }
+		    }
+
+		    //when the dom has loaded setup form validation rules
+		    $(D).ready(function($) {
+		        JQUERY4U.UTIL.setupFormValidation();
+		    });
+
+		})(jQuery, window, document);

@@ -8,25 +8,25 @@
 			Sign Up Form
 		</div>
 		<div class="panel-body">
-	    		@form(routes.Application.signUp(),'class -> "form form-horizontal", 'id->"SignUpForm",'method ->"post") {
+	    		@form(routes.Application.signUp(),'class -> "form form-horizontal", 'id->"signUpForm",'method ->"post") {
 		
 	    	<div class="form-group">
-	            @inputText(computerForm("Name"), '_label -> "Name",'class -> "form-control")
+	            @inputText(computerForm("Name"), '_label -> "Name",'class -> "form-control",'name->"Name")
 	    	</div>
 	    	<div class="form-group">
-	            @inputText(computerForm("Address"), '_label -> "Address",'class -> "form-control")
+	            @inputText(computerForm("Address"), '_label -> "Address",'class -> "form-control",'name->"Address")
 	    	</div>
 	    	<div class="form-group">
-	            @inputText(computerForm("Company"), '_label -> "Company",'class -> "form-control")
+	            @inputText(computerForm("Company"), '_label -> "Company",'class -> "form-control",'name->"Company")
 	    	</div>
 	    	<div class="form-group">
-	            @inputText(computerForm("Email"), '_label -> "Email",'class -> "form-control")
+	            @inputText(computerForm("Email"), '_label -> "Email",'class -> "form-control",'name->"Email")
 	    	</div>
 	    	<div class="form-group">
-	            @inputPassword(computerForm("Password"), '_label -> "Password",'class -> "form-control")
+	            @inputPassword(computerForm("Password"), '_label -> "Password",'class -> "form-control",'name->"Password")
 	    	</div>
 	    	<div class="form-group">
-	            @inputText(computerForm("Phone"), '_label -> "Phone",'class -> "form-control")
+	            @inputText(computerForm("Phone"), '_label -> "Phone",'class -> "form-control",'name->"Phone")
 	    	</div>
 	    
 	    	<div class="container row">
