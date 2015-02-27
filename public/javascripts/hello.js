@@ -6,11 +6,11 @@ if (window.console) {
  * Map canvas starts here
  */
 function initialize() {
-	var myLatlng = new google.maps.LatLng(28.645,77.17685);
+	var myLatlng = new google.maps.LatLng(28.6447,77.17662);
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
       center: myLatlng,
-      zoom: 14,
+      zoom: 17,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
