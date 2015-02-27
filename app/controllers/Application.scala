@@ -19,6 +19,7 @@ import scala.slick.lifted.TableQuery
 import play.mvc.Results.Redirect
 import java.util.Date
 import play.mvc.Results.Redirect
+import play.mvc.Results.Redirect
 
 object Application extends Controller {
 
@@ -86,9 +87,10 @@ object Application extends Controller {
    * updatePage redirects user to Update Form, to make changes in information. 
    */
   
-  def updatePage = Action { request =>
+  def updatePage = DBAction { implicit request =>
     request.session.get("EmailID").map { Email =>
-      Ok(views.html.updateForm(signUpForm))
+      val record=UserTable.getRecordByEmail(Email)
+      Ok(views.html.updateForm(signUpForm.fill(record)))
     }.getOrElse {
       Ok(views.html.signInForm(signInForm))
     }
@@ -153,10 +155,9 @@ object Application extends Controller {
           dataToUpdate
         }
     }
+    Ok(views.html.dashboard(data.get.Email)).withSession(
+      "EmailID" -> data.get.Email)
     
-    val dataForNewSession = data.get
-    Ok(views.html.dashboard(dataForNewSession.Email)).withSession(
-      "EmailID" -> dataForNewSession.Email)
   }
   
   /**
