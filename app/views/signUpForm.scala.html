@@ -3,12 +3,12 @@
 @import helper._
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.f) }
 @main("SignUp Form"){
-	<div class="col-md-12 panel panel-default">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			Sign Up Form
 		</div>
 		<div class="panel-body">
-	    		@form(routes.Application.signUp(),'class -> "form form-horizontal", 'id->"signUpForm",'method ->"post") {
+	    		@form(routes.Application.signUp(),'class -> "form form-horizontal", 'id->"Form",'method ->"post") {
 		
 	    	<div class="form-group">
 	            @inputText(computerForm("Name"), '_label -> "Name",'class -> "form-control",'name->"Name")
@@ -29,7 +29,7 @@
 	            @inputText(computerForm("Phone"), '_label -> "Phone",'class -> "form-control",'name->"Phone")
 	    	</div>
 	    
-	    	<div class="container row">
+	    	<div class="row">
 	        	<div class="actions col-md-6">
 	            	<input type="submit" value="Sign Up" class="btn btn-info">
 	        	</div>
