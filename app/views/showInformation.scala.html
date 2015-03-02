@@ -15,18 +15,26 @@
 		case 9 =>{"Oct"}
 		case 10=>{"Nov"}
 		case 11=>{"Dec"}
-		case _ =>{"oO"}
+		case _ =>{""}
 	}
 	
 }
-
+@showDay(day:Int) =@{
+	day match{
+		case 1 =>{"Monday"}
+		case 2 =>{"Tuesday"}
+		case 3 =>{"Wednesday"}
+		case 4 =>{"Thursday"}
+		case 5 =>{"Friday"}
+		case 6 =>{"Saturday"}
+		case 7 =>{"Sunday"}
+		case _ =>{""}
+	}
+}
 @main("Information"){
-
-		
 	<div>
 		@logoutButton(record.Email)
 	</div>
-	
 				<table class="table table-striped">
 					<tr>
 						<td>Name</td>
@@ -50,15 +58,14 @@
 					</tr>
 					<tr>
 						<td>Created</td>
-						<td>@record.Created.getDate-@showMonth(record.Created.getMonth())-@(record.Created.getYear+1900) 
+						<td>@record.Created.getDate-@showMonth(record.Created.getMonth)-@(record.Created.getYear+1900) : <b>@showDay(record.Created.getDay) </b>
 						</td>
 					</tr>			
 					<tr>
 						<td>Last Updated</td>
-						<td>@record.Update.getDate-@showMonth(record.Update.getMonth())-@(record.Update.getYear+1900) </td>
+						<td>@record.Update.getDate-@showMonth(record.Update.getMonth)-@(record.Update.getYear+1900) : <b>@showDay(record.Update.getDay)</b> 
+						</td>
 					</tr>		
 				</table>
-			<a class="btn btn-danger" href=@routes.Application.updatePage() >Update</a>
-	
-	
+			<a class="btn btn-danger" href=@routes.Application.updatePage()>Update</a>
 }
