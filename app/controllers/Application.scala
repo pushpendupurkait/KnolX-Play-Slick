@@ -20,6 +20,8 @@ import play.mvc.Results.Redirect
 import java.util.Date
 import play.mvc.Results.Redirect
 import play.mvc.Results.Redirect
+import play.mvc.Results.Redirect
+import play.mvc.Results.Redirect
 
 object Application extends Controller {
 
@@ -33,10 +35,9 @@ object Application extends Controller {
    */
   def index = Action { request =>
     request.session.get("EmailID").map { Email =>
-      Ok(views.html.dashboard(Email))
+      Redirect(routes.Application.dashboard())
     }.getOrElse {
       Ok(views.html.signInForm(signInForm))
-      //Redirect(routes.Application.signInPage()).flashing("failure" ->"No record Deleted.")
     }
   }
   
@@ -46,7 +47,7 @@ object Application extends Controller {
   
   def signUpPage = Action { request =>
     request.session.get("EmailID").map { Email =>
-      Ok(views.html.dashboard(Email))
+      Redirect(routes.Application.dashboard())
     }.getOrElse {
       Ok(views.html.signUpForm(signUpForm))
     }
@@ -58,9 +59,9 @@ object Application extends Controller {
   
   def signInPage = Action { request =>
     request.session.get("EmailID").map { Email =>
-      Ok(views.html.dashboard(Email))
+      Redirect(routes.Application.dashboard())
     }.getOrElse {
-      Ok(views.html.signInForm(signInForm))
+      Redirect(routes.Application.index())
     }
   }
   /**
@@ -72,7 +73,7 @@ object Application extends Controller {
     request.session.get("EmailID").map { Email =>
       Ok(views.html.contact("Contact"))
     }.getOrElse {
-      Ok(views.html.signInForm(signInForm))
+      Redirect(routes.Application.index())
     }
   }
   /**
@@ -81,7 +82,7 @@ object Application extends Controller {
    */
   
   def logout = Action { request =>
-    Ok(views.html.signInForm(signInForm)).withNewSession
+    Redirect(routes.Application.index()).withNewSession
   }
   /**
    * updatePage redirects user to Update Form, to make changes in information. 
@@ -92,15 +93,19 @@ object Application extends Controller {
       val record=UserTable.getRecordByEmail(Email)
       Ok(views.html.updateForm(signUpForm.fill(record)))
     }.getOrElse {
-      Ok(views.html.signInForm(signInForm))
+      Redirect(routes.Application.index())
     }
   }
   /**
    * It takes user to dashboard, when user in logged in.
    */
   
-  def dashboard = Action {
-    Ok(views.html.dashboard("Update"))
+  def dashboard = Action {implicit request =>
+    request.session.get("EmailID").map { Email =>
+    Ok(views.html.dashboard(Email))
+    }.getOrElse {
+      Redirect(routes.Application.index())
+    }
   }
   
   /**
@@ -112,7 +117,7 @@ object Application extends Controller {
     try {
       val success = signUpForm.bindFromRequest.get
       val afftdRow = UserTable.signUp(success)
-      Ok(views.html.signInForm(signInForm))
+      Redirect(routes.Application.index())
     } catch {
       case ex: Exception =>
         Ok(views.html.signUpForm(signUpForm))
@@ -128,13 +133,13 @@ object Application extends Controller {
       val success = signInForm.bindFromRequest.get
       val count = UserTable.signIn(success)
       if (count > 0) {
-        Ok(views.html.dashboard(success.Email)).withSession("EmailID" -> success.Email)
+        Redirect(routes.Application.dashboard()).withSession("EmailID" -> success.Email)
       } else {
         Ok("Logged In Not Done")
       }
     } catch {
       case ex: Exception =>
-        Ok(views.html.signInForm(signInForm))
+        Redirect(routes.Application.signIn())
     }
   }
   
@@ -171,7 +176,7 @@ object Application extends Controller {
       Ok(views.html.showInformation(data))
     } catch {
       case ex: Exception =>
-        Ok(views.html.signInForm(signInForm))
+        Redirect(routes.Application.index())
     }
   }
 
