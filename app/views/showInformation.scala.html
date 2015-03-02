@@ -1,7 +1,28 @@
 @* showInformation Template File *@
 @(record:User)
-@main("Information"){
+
+@showMonth(month:Int) = @{
+	month match{
+		case 0 =>{"Jan"}
+		case 1 =>{"Feb"}
+		case 2 =>{"Mar"}
+		case 3 =>{"Apr"}
+		case 4 =>{"May"}
+		case 5 =>{"Jun"}
+		case 6 =>{"Jul"}
+		case 7 =>{"Aug"}
+		case 8 =>{"Sep"}
+		case 9 =>{"Oct"}
+		case 10=>{"Nov"}
+		case 11=>{"Dec"}
+		case _ =>{"oO"}
+	}
 	
+}
+
+@main("Information"){
+
+		
 	<div>
 		@logoutButton(record.Email)
 	</div>
@@ -29,12 +50,12 @@
 					</tr>
 					<tr>
 						<td>Created</td>
-						<td>@record.Created.getDate/@(record.Created.getMonth+1)/@(record.Created.getYear+1900) 
+						<td>@record.Created.getDate-@showMonth(record.Created.getMonth())-@(record.Created.getYear+1900) 
 						</td>
 					</tr>			
 					<tr>
 						<td>Last Updated</td>
-						<td>@record.Update.getDate/@(record.Update.getMonth+1)/@(record.Update.getYear+1900) </td>
+						<td>@record.Update.getDate-@showMonth(record.Update.getMonth())-@(record.Update.getYear+1900) </td>
 					</tr>		
 				</table>
 			<a class="btn btn-danger" href=@routes.Application.updatePage() >Update</a>
